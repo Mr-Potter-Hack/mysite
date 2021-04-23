@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article</title>
+</head>
+<body>
+
+{% extends 'base.html' %}
+{% block content%}
+    
+    <h1>{{post.title}}</h1>
+    <small>By: {{post.author.first_name}}</small></br>
+<hr>
+{{post.body}}
+
+</br>
+</br>
+
+<button type="button" class="btn btn-dark"><a href="{%url 'blog' %}">Back</a></button>
+
+
+{%endblock%}
+</body>
+
+</html>
