@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Post</title>
+</head>
+<body>
+
+{% extends 'base.html' %}
+{% block content%}
+{% if user.is_authenticated %} 
+    <h1>Add Post...</h1>
+<hr>
+<div class="form-group">
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.media }}
+    {{ form.as_p }}
+    <button class="btn btn-dark">Submit</button>
+</div>
+
+</br>
+</br>
+
+<script>
+    var name = "{{ user.id }}";
+    document.getElementById("user").value
+        = name;
+</script>
+
+<button onclick="location.href='{%url 'blog' %}'" type="button" class="btn btn-dark">Back</button>
+{% else %}
+<h1> Login First if You are a Author</h1>
+{% endif %}
+
+{%endblock%}
+</body>
+
+</html>
