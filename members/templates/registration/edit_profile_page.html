@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile Page</title>
+</head>
+<body>
+
+{% extends 'base.html' %}
+{% block content%}
+{% if user.is_authenticated %} 
+{% if user.id == profile.user.id %}
+    <h1>Edit Profile Page...</h1>...</h1>
+<hr>
+<div class="form-group">
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-dark">Update Profile Page</button>
+</div>
+
+</br>
+</br>
+
+
+<button onclick="location.href='{%url 'blog' %}'" type="button" class="btn btn-dark">Back</button>
+{% else %}
+
+<h1> Login First if You are a Author</h1>
+
+{% endif %}
+{% endif %}
+
+{%endblock%}
+</body>
+
+</html>
