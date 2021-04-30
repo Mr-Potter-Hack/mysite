@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article</title>
+</head>
+<body>
+
+{% extends 'base.html' %}
+<!--Content-->
+{% block content%}
+    
+    <h1>{{post.title}}</h1> 
+    <small>By: {{post.author.first_name}}</small>
+
+    {% if user.is_authenticated %}
+        {% if user.id == post.author.id %}
+    - <small><a href="{% url 'update_post' post.pk %}">Edit</a>
+        <small><a href="{% url 'delete_post' post.pk %}">(Delete)</a>
+        </small>
+                </small>
+    {% endif %}
+    {% else %}
+    {% endif %}
+
+</br>
+<hr>
+{% if post.header_image %}
+    <img src="{{ post.header_image.url }}">
+{% endif %}
+
+<br/><br/>
+{{post.body|safe}}
+
+</br>
+<!--Blogger Bio Details -->
+<div class="card text-white bg-dark mb-3">
+    <div class="row g-0">
+      <div class="col-md-2">
+        {% if post.author.profile.profile_pic %}
+        <img src="{{ post.author.profile.profile_pic.url}}" alt="Profile Photo" height="210" width="200">
+        {% else %}
+        <img src="/static/home/img/download.png" alt="Profile Photo" height="210" width="200">
+        {% endif %} 
+      </div>
+      <div class="col-md-10">
+        <div class="card-body">
+          <h5 class="card-title">{{post.author.first_name}}</h5>
+          <p class="small text-muted"> 
+            {% if post.author.profile.id%}
+            <a href="{% url 'show_profile_page' post.author.profile.id %}">Profile Page</a> |
+            {% endif%}
+            {% if post.author.profile.facebook_url %}
+            <a href="{{post.author.profile.facebook_url}}" class="fa fa-facebook"></a> |
+            {%endif%}
+            {% if post.author.profile.twitter_url %}
+            <a href="{{post.author.profile.twitter_url}}" class="fa fa-twitter"></a> |
+            {%endif%}
+            {% if post.author.profile.instagram_url %}
+            <a href="{{post.author.profile.instagram_url}}" class="fa fa-instagram"></a> |
+            {%endif%}
+            {% if post.author.profile.youtube_url %}
+            <a href="{{post.author.profile.youtube_url}}" class="fa fa-youtube"></a> 
+            {%endif%}
+            </p>
+            {% if post.author.profile.bio %}
+            <p class="card-text">{{post.author.profile.bio}}</p>
+            {%endif%}
+        </div>
+      </div>
+    </div>
+  </div>
+
+<br/>
+<br/>
+
+<button onclick="location.href='{%url 'blog' %}'" type="button" class="btn btn-dark">Back</button>
+
+
+{%endblock%}
+</body>
+
+</html>
