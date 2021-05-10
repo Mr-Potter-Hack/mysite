@@ -2,7 +2,6 @@ from django.shortcuts import render
 from datetime import datetime
 from .models import Contact, Post
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-# Create your views here.
 from django.http import HttpResponse
 from .forms import PostForm, EditForm
 from django.urls import reverse_lazy
@@ -25,6 +24,12 @@ def contact(request):
         description=description, date=datetime.today())
         contact.save()
     return render(request, "contact.html")
+
+def clock(request):
+    return render(request, "clock.html")
+
+def todo(request):
+    return render(request, "todo.html")
 
 #def blog(request):
 #    return render(request, "blog.html")

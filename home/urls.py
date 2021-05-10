@@ -12,6 +12,8 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('websites', views.websites, name='websites'),
     path('contact', views.contact, name='contact'),
+    path('clock', views.clock, name='clock'),
+    path('todo', views.todo, name='todo'),
 
 
     #path('blog', views.blog, name='blog'),
