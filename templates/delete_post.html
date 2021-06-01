@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Post</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+    {% block content%}
+
+    {% if user.is_authenticated %}
+
+         {% if user.id == post.author.id %}
+    <h1>Delete Post...</h1>
+    <hr>
+    <h3>Delete: {{ post.title }}</h3>
+    <div class="form-group">
+    <form method="POST">
+        {% csrf_token %}
+        <br></br>
+        <strong>Are you sure?!</strong>
+        <br></br>
+        <button class="btn btn-dark">Delete</button>
+    </div>
+    </br>
+    </br>
+    {% else %}
+    <h1>Login First if You are a Author of this Post</h1>
+    {% endif %}
+    <button onclick="location.href='{%url 'blog' %}'" type="button" class="btn btn-dark">Back</button>
+
+    {% else %}
+    <h1>Login First if You are a Author</h1>
+    {% endif %}
+    
+    {%endblock%}
+</body>
+
+</html> 
